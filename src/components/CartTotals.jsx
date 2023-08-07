@@ -14,7 +14,7 @@ const Wrapper = styled.section`
   display: flex;
   justify-content: center;
   article {
-    border: 1px solid var(--clr-grey-8);
+    border: 1px solid var(--grey-8);
     border-radius: var(--radius);
     padding: 1.5rem 3rem;
   }

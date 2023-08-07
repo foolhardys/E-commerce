@@ -26,7 +26,7 @@ const Wrapper = styled.section`
     }
   }
   .active {
-    box-shadow: 0px 0px 0px 2px var(--clr-primary-5);
+    box-shadow: 0px 0px 0px 2px var(--primary-5);
   }
   @media (max-width: 576px) {
     .main {

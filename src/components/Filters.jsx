@@ -17,7 +17,7 @@ const Wrapper = styled.section`
   }
   .search-input {
     padding: 0.5rem;
-    background: var(--clr-grey-10);
+    background: var(--grey-10);
     border-radius: var(--radius);
     border-color: transparent;
     letter-spacing: var(--spacing);
@@ -35,14 +35,14 @@ const Wrapper = styled.section`
     border: none;
     border-bottom: 1px solid transparent;
     letter-spacing: var(--spacing);
-    color: var(--clr-grey-5);
+    color: var(--grey-5);
     cursor: pointer;
   }
   .active {
-    border-color: var(--clr-grey-5);
+    border-color: var(--grey-5);
   }
   .company {
-    background: var(--clr-grey-10);
+    background: var(--grey-10);
     border-radius: var(--radius);
     border-color: transparent;
     padding: 0.25rem;
@@ -66,7 +66,7 @@ const Wrapper = styled.section`
     justify-content: center;
     svg {
       font-size: 0.5rem;
-      color: var(--clr-white);
+      color: var(--white);
     }
   }
   .all-btn {
@@ -95,8 +95,8 @@ const Wrapper = styled.section`
     max-width: 200px;
   }
   .clear-btn {
-    background: var(--clr-red-dark);
-    color: var(--clr-white);
+    background: var(--red-dark);
+    color: var(--white);
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius);
   }

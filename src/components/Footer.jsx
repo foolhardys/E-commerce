@@ -10,13 +10,13 @@ const Wrapper = styled.footer`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--clr-black);
+  background: var(--black);
   text-align: center;
   span {
-    color: var(--clr-primary-5);
+    color: var(--primary-5);
   }
   h5 {
-    color: var(--clr-white);
+    color: var(--white);
     margin: 0.1rem;
 
     font-weight: 400;

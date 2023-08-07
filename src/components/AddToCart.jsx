@@ -39,7 +39,7 @@ const Wrapper = styled.section`
     justify-content: center;
     svg {
       font-size: 0.75rem;
-      color: var(--clr-white);
+      color: var(--white);
     }
   }
   .active {

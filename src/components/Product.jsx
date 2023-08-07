@@ -11,7 +11,7 @@ const Product = () => {
 const Wrapper = styled.article`
   .container {
     position: relative;
-    background: var(--clr-black);
+    background: var(--black);
     border-radius: var(--radius);
   }
   img {
@@ -26,7 +26,7 @@ const Wrapper = styled.article`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--clr-primary-5);
+    background: var(--primary-5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,7 +38,7 @@ const Wrapper = styled.article`
     cursor: pointer;
     svg {
       font-size: 1.25rem;
-      color: var(--clr-white);
+      color: var(--white);
     }
   }
   .container:hover img {
@@ -60,7 +60,7 @@ const Wrapper = styled.article`
   }
 
   footer p {
-    color: var(--clr-primary-5);
+    color: var(--primary-5);
     letter-spacing: var(--spacing);
   }
 `
