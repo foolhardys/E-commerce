@@ -2,7 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Contact = () => {
-  return <h4>contact section</h4>
+  return <Wrapper>
+    <div className="section-center">
+      <h3>Join our community and  <br /> become a Comfy member</h3>
+      <div className="content">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel nam, fuga aliquam magnam commodi quae, eos laudantium quia omnis id cupiditate! Cupiditate quaerat, inventore eum officiis incidunt quidem totam consequatur?</p>
+        <form
+          className='contact-form'
+          action="https://formspree.io/f/myyqeern"
+          method="POST">
+          <input
+            type="email"
+            className='form-input'
+            placeholder='Enter Email'
+            name="email" />
+          <button type="submit" className='submit-btn'>
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </Wrapper>
 }
 const Wrapper = styled.section`
   padding: 5rem 0;
@@ -32,6 +52,7 @@ const Wrapper = styled.section`
     color: var(--grey-3);
     border-top-left-radius: var(--radius);
     border-bottom-left-radius: var(--radius);
+    border: 2px solid var(--primary-9);
   }
   .submit-btn {
     border-top-right-radius: var(--radius);
@@ -45,12 +66,14 @@ const Wrapper = styled.section`
     background: var(--primary-5);
     text-transform: capitalize;
     letter-spacing: var(--spacing);
+    border: 2px solid var(--primary-8);
     cursor: pointer;
     transition: var(--transition);
     color: var(--black);
   }
   .submit-btn:hover {
     color: var(--white);
+    background: var(--primary-8);
   }
   @media (min-width: 992px) {
     .content {

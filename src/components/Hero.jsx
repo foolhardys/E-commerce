@@ -5,7 +5,21 @@ import heroBcg from '../assets/hero-bcg.jpeg'
 import heroBcg2 from '../assets/hero-bcg-2.jpeg'
 
 const Hero = () => {
-  return <h4>hero</h4>
+  return <Wrapper className='section-center'>
+    <article className="content">
+      <h1>
+        Modern and <br />
+        Aesthetic Interior
+      </h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia in quam enim cum iste quas, consectetur quod voluptates cupiditate mollitia dolore, doloremque molestias reiciendis nostrum, pariatur soluta exercitationem sed laboriosam.
+      </p>
+      <Link to='/products' className='btn hero-btn'>Shop Now</Link>
+    </article>
+    <article className="img-container">
+      <img src={heroBcg} alt="Table" className='main-img'/>
+    </article>
+  </Wrapper>
 }
 
 const Wrapper = styled.section`
@@ -48,14 +62,6 @@ const Wrapper = styled.section`
       border-radius: var(--radius);
       display: block;
       object-fit: cover;
-    }
-    .accent-img {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 250px;
-      transform: translateX(-50%);
-      border-radius: var(--radius);
     }
     .img-container::before {
       content: '';
