@@ -1,11 +1,138 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useFilterContext } from '../context/filter_context'
-import { getUniqueValues, formatPrice } from '../utils/helpers'
+import { getUniqueValues } from '../utils/helpers'
 import { FaCheck } from 'react-icons/fa'
 
 const Filters = () => {
-  return <h4>filters</h4>
+
+  const {
+    filters: {
+      text, category, company, color, min_price, max_price, price, shipping
+    },
+    updateFilters,
+    clearFilters,
+    all_products
+  } = useFilterContext()
+
+
+  const categories = getUniqueValues(all_products, 'category')
+  const companies = getUniqueValues(all_products, 'company')
+  const colors = getUniqueValues(all_products, 'colors')
+
+
+  return <Wrapper>
+    <div className="content">
+      <form onSubmit={(e) => e.preventDefault()}>
+        {/* search input */}
+        <div className="form-control">
+          <input
+            type="text"
+            name="text"
+            id="text"
+            placeholder='search'
+            className='search-input'
+            value={text}
+            onChange={updateFilters}
+          />
+        </div>
+        {/* categories */}
+        <div className="form-control">
+          <h5>category</h5>
+          <div>
+            {categories.map((c, index) => {
+              return <button
+                key={index}
+                className={`${category === c ? 'active' : null}`}
+                onClick={updateFilters}
+                type='button'
+                name='category'>
+                {c}
+              </button>
+            })}
+          </div>
+        </div>
+        {/* companies */}
+        <div className="form-control">
+          <h5>company</h5>
+          <select
+            name="company"
+            id="company"
+            value={company}
+            onChange={updateFilters}
+            className='company'>
+            {companies.map((c, index) => {
+              return <option key={index} value={c}>
+                {c}
+              </option>
+            })}
+          </select>
+        </div>
+        {/* colors */}
+        <div className="form-control">
+          <h5>colors</h5>
+          <div className='colors'>
+            {colors.map((c, index) => {
+              if (c === 'all') {
+                return <button
+                  name='color'
+                  key={index}
+                  onClick={updateFilters}
+                  data-color='all'
+                  type='button'
+                  className={`${color === 'all' ? 'all-btn active' : 'all-btn'}`}>
+                  all
+                </button>
+              }
+              return <button
+                key={index}
+                onClick={updateFilters}
+                type='button'
+                name='color'
+                style={{ background: c }}
+                className={`${color === c ? 'color-btn active' : 'color-btn'}`}
+                data-color={c}>
+                {color === c ? <FaCheck /> : null}
+              </button>
+            })}
+          </div>
+        </div>
+        {/* price */}
+        <div className="form-control">
+          <h5>price</h5>
+          <p className='price'>₹{price}</p>
+          <input
+            type="range"
+            name="price"
+            id="price"
+            onChange={updateFilters}
+            min={min_price}
+            max={max_price}
+            value={price}
+          />
+        </div>
+        {/* shipping */}
+        <div className="form-control shipping">
+          <label htmlFor="shipping">free shipping</label>
+          <input
+            type="checkbox"
+            name="shipping"
+            id="shipping"
+            onChange={updateFilters}
+            checked={shipping}
+          />
+        </div>
+      </form>
+      {/* clear filters */}
+      <button
+        type="button"
+        className='clear-btn'
+        onClick={clearFilters}>
+        {''}
+        Clear Filters
+      </button>
+    </div>
+  </Wrapper>
 }
 
 const Wrapper = styled.section`
@@ -16,10 +143,10 @@ const Wrapper = styled.section`
     }
   }
   .search-input {
-    padding: 0.5rem;
-    background: var(--grey-10);
+    padding: 0.6rem;
+    background: var(--grey-20);
     border-radius: var(--radius);
-    border-color: transparent;
+    border-color: var(--grey-10);
     letter-spacing: var(--spacing);
   }
   .search-input::placeholder {
@@ -39,7 +166,7 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
   .active {
-    border-color: var(--grey-5);
+    border-color: var(--grey-6);
   }
   .company {
     background: var(--grey-10);

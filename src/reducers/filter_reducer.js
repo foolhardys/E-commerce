@@ -12,13 +12,19 @@ import {
 const filter_reducer = (state, action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
-      return { ...state, all_products: [...action.payload], filtered_products: [...action.payload] }
+      let maxPrice = action.payload.map((p) => p.price)
+      maxPrice = Math.max(...maxPrice)
+      return { ...state, all_products: [...action.payload], filtered_products: [...action.payload], filters: { ...state.filters, max_price: maxPrice, price: maxPrice } }
+
     case SET_GRIDVIEW:
       return { ...state, grid_view: true }
+
     case SET_LISTVIEW:
       return { ...state, grid_view: false }
+
     case UPDATE_SORT:
       return { ...state, sort: action.payload }
+
     case SORT_PRODUCTS:
       const { sort, filtered_products } = state
       let tempProducts = [...filtered_products]
@@ -39,6 +45,65 @@ const filter_reducer = (state, action) => {
         })
       }
       return { ...state, filtered_products: tempProducts }
+
+    case UPDATE_FILTERS:
+      const { name, value } = action.payload
+      return {
+        ...state, filters: { ...state.filters, [name]: value }
+      }
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          text: '',
+          company: 'all',
+          category: 'all',
+          color: 'all',
+          price: state.filters.max_price,
+          shipping: false,
+        }
+      }
+    case FILTER_PRODUCTS:
+      const { all_products } = state
+      const { text, company, category, color, price, shipping } = state.filters
+      let temp_Products = [...all_products]
+      // text filter
+      if (text) {
+        temp_Products = temp_Products.filter((product) => {
+          return product.name.toLowerCase().startsWith(text)
+        })
+      }
+      // category filter
+      if (category !== 'all') {
+        temp_Products = temp_Products.filter((product) => {
+          return category === product.category
+        })
+      }
+      // company filter
+      if (company !== 'all') {
+        temp_Products = temp_Products.filter((product) => {
+          return company === product.company
+        })
+      }
+      // color filter
+      if (color !== 'all') {
+        temp_Products = temp_Products.filter((product) => {
+          return product.colors.find((c) => c === color)
+        })
+      }
+      // price
+     temp_Products = temp_Products.filter((product)=>{
+      return product.price <= price
+     })
+      // shipping
+      if (shipping) {
+        temp_Products = temp_Products.filter((product) => {
+          return product.shipping === true
+        })
+      }
+
+      return { ...state, filtered_products: temp_Products }
     default:
       return state
   }
