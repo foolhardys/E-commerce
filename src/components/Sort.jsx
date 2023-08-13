@@ -3,7 +3,43 @@ import { useFilterContext } from '../context/filter_context'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
 import styled from 'styled-components'
 const Sort = () => {
-  return <h4>sort </h4>
+
+  const { grid_view, filtered_products: products, setGridView, setListView, updateSort, sort } = useFilterContext()
+
+  return <Wrapper>
+    <div className="btn-container">
+      <button
+        type='button'
+        className={`${grid_view ? 'active' : ''}`}
+        onClick={() => setGridView()}>
+        <BsFillGridFill />
+      </button>
+      <button
+        type='button'
+        className={`${!grid_view ? 'active' : ''}`}
+        onClick={() => setListView()}>
+        <BsList />
+      </button>
+    </div>
+    <p>
+      {products.length} products found
+    </p>
+    <hr />
+    <form>
+      <label htmlFor="sort">sort by  :   </label>
+      <select
+        name="sort"
+        id="sort"
+        className='sort-input'
+        value={sort}
+        onChange={updateSort}>
+        <option value="price-lowest">price (lowest)</option>
+        <option value="price-highest">price (highest)</option>
+        <option value="name-a">name (ascending)</option>
+        <option value="name-d">name (descending)</option>
+      </select>
+    </form>
+  </Wrapper>
 }
 
 const Wrapper = styled.section`
@@ -54,6 +90,7 @@ const Wrapper = styled.section`
     .active {
       background: var(--black);
       color: var(--white);
+      box-shadow: var(--dark-shadow);
     }
   }
 
