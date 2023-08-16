@@ -11,15 +11,18 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+// dev-jzq0oyp2m2eon2tq.us.auth0.com
+
+// 4aAFwNEVoJLUBcscYWTjjdT7zQPh3dZw
+
 
 root.render(
     <Auth0Provider
-        domain="dev-jzq0oyp2m2eon2tq.us.auth0.com"
-        clientId=" QkAtKjhdpHiVJXwdB4P9C3r4zWOMxeyZ"
+        domain={process.env.REACT_APP_AUTH_DOMAIN}
+        clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
         authorizationParams={{
             redirect_uri: window.location.origin
         }}
-        cacheLocation="localstorage"
     >
         <UserProvider>
             <ProductsProvider>
